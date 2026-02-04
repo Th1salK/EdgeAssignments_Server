@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thisal K\\source\\repos\\EdgeAssignments\\EdgeAssignments.Infrastructure.Persistence\\EdgeAssignments.Infrastructure.Persistence.csproj": {}
+    "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Infrastructure.Persistence/EdgeAssignments.Infrastructure.Persistence.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thisal K\\source\\repos\\EdgeAssignments\\EdgeAssignments.Infrastructure.Persistence\\EdgeAssignments.Infrastructure.Persistence.csproj": {
+    "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Core.Domain/EdgeAssignments.Core.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thisal K\\source\\repos\\EdgeAssignments\\EdgeAssignments.Infrastructure.Persistence\\EdgeAssignments.Infrastructure.Persistence.csproj",
-        "projectName": "EdgeAssignments.Infrastructure.Persistence",
-        "projectPath": "C:\\Users\\Thisal K\\source\\repos\\EdgeAssignments\\EdgeAssignments.Infrastructure.Persistence\\EdgeAssignments.Infrastructure.Persistence.csproj",
-        "packagesPath": "C:\\Users\\Thisal K\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thisal K\\source\\repos\\EdgeAssignments\\EdgeAssignments.Infrastructure.Persistence\\obj\\",
+        "projectUniqueName": "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Core.Domain/EdgeAssignments.Core.Domain.csproj",
+        "projectName": "EdgeAssignments.Core.Domain",
+        "projectPath": "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Core.Domain/EdgeAssignments.Core.Domain.csproj",
+        "packagesPath": "/Users/vinethranathunga/.nuget/packages/",
+        "outputPath": "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Core.Domain/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Thisal K\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/vinethranathunga/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,11 +38,53 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[16.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            },
+            "Microsoft.AspNetCore.JsonPatch": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.AspNetCore.OData": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "MongoDB.Bson": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
+            "MongoDB.Driver.Core": {
+              "target": "Package",
+              "version": "[2.30.0, )"
+            },
+            "MongoDbClient": {
+              "target": "Package",
+              "version": "[1.0.23, )"
+            },
+            "SimplePatch": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -65,7 +101,112 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Infrastructure.Persistence/EdgeAssignments.Infrastructure.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Infrastructure.Persistence/EdgeAssignments.Infrastructure.Persistence.csproj",
+        "projectName": "EdgeAssignments.Infrastructure.Persistence",
+        "projectPath": "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Infrastructure.Persistence/EdgeAssignments.Infrastructure.Persistence.csproj",
+        "packagesPath": "/Users/vinethranathunga/.nuget/packages/",
+        "outputPath": "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Infrastructure.Persistence/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/vinethranathunga/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Core.Domain/EdgeAssignments.Core.Domain.csproj": {
+                "projectPath": "/Users/vinethranathunga/Documents/Repositories/EdgeAssignments_Server/EdgeAssignments.Core.Domain/EdgeAssignments.Core.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[16.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            },
+            "Microsoft.AspNetCore.JsonPatch": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.AspNetCore.OData": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "MongoDB.Bson": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
+            "MongoDB.Driver.Core": {
+              "target": "Package",
+              "version": "[2.30.0, )"
+            },
+            "MongoDbClient": {
+              "target": "Package",
+              "version": "[1.0.23, )"
+            },
+            "SimplePatch": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
