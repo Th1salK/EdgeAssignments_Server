@@ -12,4 +12,17 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="16.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.9" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="10.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.0" />
+    <PackageReference Include="MongoDB.Bson" Version="3.6.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.6.0" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.30.0" />
+    <PackageReference Include="MongoDbClient" Version="1.0.23" />
+    <PackageReference Include="SimplePatch" Version="3.0.1" />
+  </ItemGroup>
+
 </Project>

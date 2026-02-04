@@ -1,8 +1,9 @@
-﻿using AutoMapper;
-using EdgeFlow.API.Dtos.Get;
-using EdgeFlow.API.Dtos.Post;
-using EdgeFlow.Core.Domain.Storage;
-using EdgeFlow.Core.Domain.Storage.Entities;
+using AutoMapper;
+using EdgeAssignments.API.Dtos.Get;
+using EdgeAssignments.API.Dtos.Post;
+using EdgeAssignments.Core.Domain.Storage;
+using EdgeAssignments.Core.Domain.Storage.Entities;
+using EdgeAssignments.Core.Domain.Common.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 using SimplePatch;
 using System.Web;
 
-namespace EdgeFlow.API.Controllers
+namespace EdgeAssignments.API.Controllers
 {
     public class BaseController<E, R, W> : ODataController where E : BaseEntity, new() where R : BaseGetDto, new() where W : BasePostDto, new()
     {
@@ -51,7 +52,8 @@ namespace EdgeFlow.API.Controllers
         [EnableQuery(MaxAnyAllExpressionDepth =20, MaxNodeCount =300)]
         public virtual async Task<ActionResult<List<R>>> Get(ODataQueryOptions<R> oDataQueryOptions)
         {
-            var searchText = oDataQueryOptions.Search?.RawValue;
+            // var searchText = oDataQueryOptions.Search?.RawValue;
+            string? searchText = null;
             var cvList = new List<E>();
             if (searchText != null)
             {
@@ -143,7 +145,8 @@ namespace EdgeFlow.API.Controllers
             var entity = await entityRepo.GetByIdAsync(id);
             entity.UpdatedBy = userId;
             var mappedData = mapper.Map<W>(entity);
-            data.ApplyTo(mappedData, ModelState);
+            // data.ApplyTo(mappedData, ModelState);
+            data.ApplyTo(mappedData);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

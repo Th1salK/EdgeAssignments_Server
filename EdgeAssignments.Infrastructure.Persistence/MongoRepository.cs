@@ -1,14 +1,13 @@
-﻿using EdgeFlow.Core.Domain.Storage;
-using EdgeFlow.Core.Domain.Storage.Configs;
-using EdgeFlow.Core.Domain.Storage.Entities;
+using EdgeAssignments.Core.Domain.Common.Repositories;
+using EdgeAssignments.Core.Domain.Storage.Configs;
+using EdgeAssignments.Core.Domain.Storage.Entities;
 using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using SharpCompress.Common;
 using System.Linq.Expressions;
 
-namespace EdgeFlow.Infrastructure.Persistence
+namespace EdgeAssignments.Infrastructure.Persistence
 {
     public class MongoRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
@@ -91,7 +90,7 @@ namespace EdgeFlow.Infrastructure.Persistence
             await Collection.DeleteManyAsync(predicate);
         }
 
-        public async Task<List<T>> GetAllAsync(string tenant=null)
+        public async Task<List<T>> GetAllAsync(string? tenant=null)
         {
             if(tenant!=null)
             {
@@ -112,17 +111,17 @@ namespace EdgeFlow.Infrastructure.Persistence
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<List<T>> GetByIdsAsync(List<string> id,string tenant = null)
+        public async Task<List<T>> GetByIdsAsync(List<string> id,string? tenant = null)
         {
             if(tenant!=null)
             {
                 return await client.GetDatabase(tenant)
                     .GetCollection<T>(typeof(T).Name.ToLower())
-                    .AsQueryable().Where(x => id.Contains(x.Id)).ToListAsync();
+                    .AsQueryable().Where(x => x.Id != null && id.Contains(x.Id)).ToListAsync();
             }
             else
             {
-                return await Collection.AsQueryable().Where(x => id.Contains(x.Id)).ToListAsync();
+                return await Collection.AsQueryable().Where(x => x.Id != null && id.Contains(x.Id)).ToListAsync();
             }
          
         }
@@ -136,19 +135,19 @@ namespace EdgeFlow.Infrastructure.Persistence
             await Collection.BulkWriteAsync(newItems);
         }
 
-        public async Task<List<T>> SearchAsync(Expression<Func<T, bool>> predicate, string tenant = null)
+        public async Task<List<T>> SearchAsync(Expression<Func<T, bool>> predicate, string? tenant = null)
         {
             if (tenant != null)
             {
-                var result= await client.GetDatabase(tenant).GetCollection<T>(typeof(T).Name.ToLower()).FindAsync(predicate);
-                return result.ToList();
+                var result = await client.GetDatabase(tenant).GetCollection<T>(typeof(T).Name.ToLower()).FindAsync(predicate);
+                return await result.ToListAsync();
 
             }
             else
             {
-              
+
                 var result = await Collection.FindAsync(predicate);
-                return result.ToList();
+                return await result.ToListAsync();
             }
         }
 
