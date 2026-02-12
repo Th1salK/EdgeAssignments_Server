@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EdgeAssignments.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf6eb647a396455a8e860d51cc3e4858e75fcf9e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec6eeaf733546061a0d2aa8d01bcb59c1bbc2d8f")]
 [assembly: System.Reflection.AssemblyProductAttribute("EdgeAssignments.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EdgeAssignments.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
