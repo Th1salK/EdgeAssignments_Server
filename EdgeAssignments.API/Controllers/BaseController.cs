@@ -38,7 +38,7 @@ namespace EdgeAssignments.API.Controllers
             return Ok(response);
         }
         [HttpGet("{id}")]
-        public virtual async Task<IActionResult> GetSingle(string id)
+        public virtual async Task<IActionResult> GetSingle(Guid id)
         {
             var result = await entityRepo.GetByIdAsync(id);
             if (result == null)
@@ -48,6 +48,7 @@ namespace EdgeAssignments.API.Controllers
             var mappedResult = mapper.Map<R>(result);
             return Ok(mappedResult);
         }
+        
         [HttpGet]
         [EnableQuery(MaxAnyAllExpressionDepth =20, MaxNodeCount =300)]
         public virtual async Task<ActionResult<List<R>>> Get(ODataQueryOptions<R> oDataQueryOptions)
@@ -57,7 +58,7 @@ namespace EdgeAssignments.API.Controllers
             var cvList = new List<E>();
             if (searchText != null)
             {
-               string typeName = typeof(E).Name;
+                string typeName = typeof(E).Name;
                 switch(typeName)
                 {
                     case "Cv":
@@ -118,7 +119,7 @@ namespace EdgeAssignments.API.Controllers
             return Ok(response);
         }
         [HttpPut("{id}")]
-        public virtual async Task<ActionResult<R>> Put(string id, W data)
+        public virtual async Task<ActionResult<R>> Put(Guid id, W data)
         {
             var userId = HttpContext.Request.Headers["X-UserId"].FirstOrDefault();
             var entity = mapper.Map<E>(data);
@@ -130,14 +131,14 @@ namespace EdgeAssignments.API.Controllers
             return Ok(response);
         }
         [HttpDelete("{id}")]
-        public virtual async Task<ActionResult<R>> Delete(string id)
+        public virtual async Task<ActionResult<R>> Delete(Guid id)
         {
             await entityRepo.DeleteAsync(id);
             return Ok();
         }
 
         [HttpPatch("{id}")]
-        public virtual async Task<ActionResult<R>> Patch(string id, [FromBody] JsonPatchDocument<W> data)
+        public virtual async Task<ActionResult<R>> Patch(Guid id, [FromBody] JsonPatchDocument<W> data)
         {
 
             var userId = HttpContext.Request.Headers["X-UserId"].FirstOrDefault();
