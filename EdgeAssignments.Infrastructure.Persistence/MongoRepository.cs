@@ -12,7 +12,6 @@ namespace EdgeAssignments.Infrastructure.Persistence
     public class MongoRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly IMongoClient client;
-
         protected readonly IMongoCollection<T> Collection;
         protected readonly IMongoCollection<BsonDocument> bsonCollection;
         private readonly ApplicationSettings settings;
@@ -62,25 +61,21 @@ namespace EdgeAssignments.Infrastructure.Persistence
 
         public async Task<T> AddAsync(T obj)
         {
-
-            var document = obj.ToBsonDocument();
-            document["_id"] = ObjectId.Empty;
-            await bsonCollection.InsertOneAsync(document);
-            obj.Id = document["_id"].ToString();
-
+            if (obj.Id == Guid.Empty)
+            {
+                obj.Id = Guid.NewGuid();
+            }
+            await Collection.InsertOneAsync(obj);
             return obj;
-
         }
 
         public async Task<T> AddWithIdAsync(T obj)
         {
-            var document = obj.ToBsonDocument();
-            await bsonCollection.InsertOneAsync(document);
-            obj.Id = document["_id"].ToString();
+            await Collection.InsertOneAsync(obj);
             return obj;
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(Guid id)
         {
             await Collection.DeleteOneAsync(x => x.Id == id);
         }
@@ -105,23 +100,23 @@ namespace EdgeAssignments.Infrastructure.Persistence
            
         }
 
-        public async Task<T> GetByIdAsync(string id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
             return await Collection.Find(Builders<T>.Filter.Eq(x => x.Id, id))
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<List<T>> GetByIdsAsync(List<string> id,string? tenant = null)
+        public async Task<List<T>> GetByIdsAsync(List<Guid> id,string? tenant = null)
         {
             if(tenant!=null)
             {
                 return await client.GetDatabase(tenant)
                     .GetCollection<T>(typeof(T).Name.ToLower())
-                    .AsQueryable().Where(x => x.Id != null && id.Contains(x.Id)).ToListAsync();
+                    .AsQueryable().Where(x => id.Contains(x.Id)).ToListAsync();
             }
             else
             {
-                return await Collection.AsQueryable().Where(x => x.Id != null && id.Contains(x.Id)).ToListAsync();
+                return await Collection.AsQueryable().Where(x => id.Contains(x.Id)).ToListAsync();
             }
          
         }
@@ -163,25 +158,15 @@ namespace EdgeAssignments.Infrastructure.Persistence
 
         public async Task AddAllAsync(IEnumerable<T> entities)
 		{
-			var documents = new List<BsonDocument>();
-
 			foreach (var entity in entities)
 			{
-                // Generate a new ObjectId for every entity
-                if (String.IsNullOrEmpty(entity.Id))
+                if (entity.Id == Guid.Empty)
                 {
-                   var objectId = ObjectId.GenerateNewId();
-                   entity.Id = objectId.ToString();
+                   entity.Id = Guid.NewGuid();
                 }
-
-				// Convert to BsonDocument and set the _id
-				var doc = entity.ToBsonDocument();
-				doc["_id"] = ObjectId.Parse(entity.Id);
-
-				documents.Add(doc);
 			}
 
-			await bsonCollection.InsertManyAsync(documents);
+			await Collection.InsertManyAsync(entities);
 		}
 
         public async Task UpdateAllAsync(IEnumerable<T> entities)
@@ -193,13 +178,10 @@ namespace EdgeAssignments.Infrastructure.Persistence
 
             foreach (var entity in entities)
             {
-                if (string.IsNullOrEmpty(entity.Id))
+                if (entity.Id == Guid.Empty)
                 {
-                    throw new ArgumentException("Entity Id cannot be null or empty for update.");
+                    throw new ArgumentException("Entity Id cannot be empty for update.");
                 }
-
-                var doc = entity.ToBsonDocument();
-                doc["_id"] = ObjectId.Parse(entity.Id);
 
                 var filter = Builders<T>.Filter.Eq(e => e.Id, entity.Id);
 
