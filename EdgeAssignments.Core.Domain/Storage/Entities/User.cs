@@ -2,6 +2,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace EdgeAssignments.Core.Domain.Storage.Entities;
 
+//user entity
 public class User : BaseEntity
 {
     public string Name { get; set; } = string.Empty;
