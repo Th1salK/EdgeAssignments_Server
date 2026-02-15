@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
+
 [ApiController]
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
@@ -172,15 +173,10 @@ public class AuthController : ControllerBase
     {
         try
         {
-            // Extract user ID from JWT token
             // Extract user ID from JWT token (claim is a string representation of a Guid)
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
-            {
-                return Unauthorized(new MessageResponseDto { Message = "Invalid token", Success = false });
-            }
-            if (string.IsNullOrEmpty(userIdClaim))
             {
                 return Unauthorized(new MessageResponseDto { Message = "Invalid token", Success = false });
             }

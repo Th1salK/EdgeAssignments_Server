@@ -1,7 +1,6 @@
 using EdgeAssignments.API.Services.Interfaces;
 using EdgeAssignments.Core.Domain.Storage.Entities;
 using Google.Apis.Auth;
-using Microsoft.Identity.Client;
 using System.Net.Http.Headers;
 using System.Text.Json;
 

@@ -1,17 +1,12 @@
 using AutoMapper;
 using EdgeAssignments.API.Dtos.Get;
 using EdgeAssignments.API.Dtos.Post;
-using EdgeAssignments.Core.Domain.Storage;
 using EdgeAssignments.Core.Domain.Storage.Entities;
 using EdgeAssignments.Core.Domain.Common.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
-using Microsoft.AspNetCore.OData.Query.Wrapper;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
-using SimplePatch;
 using System.Web;
 
 namespace EdgeAssignments.API.Controllers

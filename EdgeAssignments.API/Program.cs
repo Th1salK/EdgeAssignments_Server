@@ -4,10 +4,10 @@ using EdgeAssignments.Infrastructure.Persistence;
 using EdgeAssignments.API.Services;
 using EdgeAssignments.API.Services.Interfaces;
 using EdgeAssignments.Core.Domain.Storage.Entities;
-using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 using System.Text;
 
 
@@ -16,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<ApplicationSettings>(
     builder.Configuration.GetSection("ApplicationSettings"));
 
-builder.Services.AddSingleton(sp => 
+builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<IOptions<ApplicationSettings>>().Value);
 
 // 2. Register MongoDB Repository and HttpContextAccessor

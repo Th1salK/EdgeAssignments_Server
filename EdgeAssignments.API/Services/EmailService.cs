@@ -4,7 +4,6 @@ using EdgeAssignments.Core.Domain.Storage.Configs;
 using EdgeAssignments.Core.Domain.Storage.Entities;
 using MailKit.Net.Smtp;
 using MailKit.Security;
-using Microsoft.Extensions.Options;
 using MimeKit;
 namespace EdgeAssignments.API.Services;
 
@@ -17,12 +16,12 @@ public class EmailService : IEmailService
     private readonly IConfiguration _configuration;
     
     public EmailService(
-        IOptions<SmtpSettings> smtpSettings,
+        SmtpSettings smtpSettings,
         IAuditLogRepository auditLogRepository,
         ILogger<EmailService> logger,
         IConfiguration configuration)
     {
-        _smtpSettings = smtpSettings.Value ?? throw new ArgumentNullException(nameof(smtpSettings));
+        _smtpSettings = smtpSettings ?? throw new ArgumentNullException(nameof(smtpSettings));
         _auditLogRepository = auditLogRepository ?? throw new ArgumentNullException(nameof(auditLogRepository));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
